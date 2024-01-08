@@ -1,9 +1,9 @@
 #include "LinkedList.h"
 
-// ³ëµå »ı¼º (ÀÚÀ¯ÀúÀå¼Ò¿¡)
+// ë…¸ë“œ ìƒì„± (ììœ ì €ì¥ì†Œì—)
 Node* SLL_CreateNode(ElementType NewData)
 {
-	// ÇÊ¿äÇÑ ¸¸Å­ ¸Ş¸ğ¸®¸¦ »ç¿ëÇÒ ¼ö ÀÖ´Â ÀåÁ¡À» À§ÇØ "µ¿Àû ¸Ş¸ğ¸® ÇÒ´ç"
+	// í•„ìš”í•œ ë§Œí¼ ë©”ëª¨ë¦¬ë¥¼ ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ì¥ì ì„ ìœ„í•´ "ë™ì  ë©”ëª¨ë¦¬ í• ë‹¹"
 	Node* NewNode = (Node*)malloc(sizeof(Node));
 
 	NewNode->Data = NewData;
@@ -12,25 +12,25 @@ Node* SLL_CreateNode(ElementType NewData)
 	return NewNode;
 }
 
-// ³ëµå ¼Ò¸ê
+// ë…¸ë“œ ì†Œë©¸
 void SLL_DestroyNode(Node* Node)
 {
 	free(Node);
 }
 
-// ³ëµå Ãß°¡ (Tail¿¡ ÀÌ¾î ºÙÀÌ´Â ¹æ½Ä)
-// Æ÷ÀÎÅÍ: ¸Ş¸ğ¸® ÁÖ¼Ò¸¦ ´ã´Â º¯¼ö
-// List Æ÷ÀÎÅÍ º¯¼öÀÇ ÁÖ¼Ò¸¦ Àü´ŞÇÏ±â À§ÇÑ ÀÌÁßÆ÷ÀÎÅÍ (Æ÷ÀÎÅÍ°¡ °¡Áø °ªÀÌ ¾Æ´Ñ Æ÷ÀÎÅÍ ÀÚ½ÅÀÇ ÁÖ¼Ò)
+// ë…¸ë“œ ì¶”ê°€ (Tailì— ì´ì–´ ë¶™ì´ëŠ” ë°©ì‹)
+// í¬ì¸í„°: ë©”ëª¨ë¦¬ ì£¼ì†Œë¥¼ ë‹´ëŠ” ë³€ìˆ˜
+// List í¬ì¸í„° ë³€ìˆ˜ì˜ ì£¼ì†Œë¥¼ ì „ë‹¬í•˜ê¸° ìœ„í•œ ì´ì¤‘í¬ì¸í„° (í¬ì¸í„°ê°€ ê°€ì§„ ê°’ì´ ì•„ë‹Œ í¬ì¸í„° ìì‹ ì˜ ì£¼ì†Œ)
 void SLL_AppendNode(Node** Head, Node* NewNode) 
 {
-	// Çìµå ³ëµå°¡ NULLÀÌ¶ó¸é »õ·Î¿î ³ëµå°¡ Head°¡ µÈ´Ù.
+	// í—¤ë“œ ë…¸ë“œê°€ NULLì´ë¼ë©´ ìƒˆë¡œìš´ ë…¸ë“œê°€ Headê°€ ëœë‹¤.
 	if ((*Head) == NULL)
 	{
 		*Head = NewNode;
 	}
 	else
 	{
-		// Å×ÀÏÀ» Ã£¾Æ NewNode ¿¬°á
+		// í…Œì¼ì„ ì°¾ì•„ NewNode ì—°ê²°
 		Node* Tail = (*Head);
 		while(Tail->NextNode != NULL)
 		{
@@ -40,7 +40,7 @@ void SLL_AppendNode(Node** Head, Node* NewNode)
 	}
 }
 
-// ³ëµå »ğÀÔ
+// ë…¸ë“œ ì‚½ì…
 void SLL_InsertAfter(Node* Current, Node* NewNode)
 {
 	NewNode->NextNode = Current->NextNode;
@@ -59,7 +59,7 @@ void SLL_InsertNewHead(Node** Head, Node* NewHead)
 	}
 }
 
-// ³ëµå Á¦°Å
+// ë…¸ë“œ ì œê±°
 void SLL_RemoveNode(Node** Head, Node* Remove)
 {
 	if (*Head == Remove)
@@ -69,7 +69,7 @@ void SLL_RemoveNode(Node** Head, Node* Remove)
 	else
 	{
 		Node* Current = *Head;
-		while (Current != NULL && Current->NextNode)
+		while (Current != NULL && Current->NextNode != Remove)
 		{
 			Current = Current->NextNode;
 		}
@@ -78,7 +78,7 @@ void SLL_RemoveNode(Node** Head, Node* Remove)
 	}
 }
 
-// ³ëµå Å½»ö (Â÷±ÙÂ÷±Ù Å½»ö)
+// ë…¸ë“œ íƒìƒ‰ (ì°¨ê·¼ì°¨ê·¼ íƒìƒ‰)
 Node* SLL_GetNodeAt(Node* Head, int Location)
 {
 	Node* Current = Head;
@@ -90,7 +90,7 @@ Node* SLL_GetNodeAt(Node* Head, int Location)
 	return Current;
 }
 
-// ³ëµå °³¼ö ¼¼±â
+// ë…¸ë“œ ê°œìˆ˜ ì„¸ê¸°
 int SLL_GetNodeCount(Node* Head)
 {
 	int Count = 0;
